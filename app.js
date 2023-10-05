@@ -7,11 +7,8 @@ async function fetchProducts() {
 
 async function deleteProduct(id) {
   try {
-    console.log("siliniyorr");
     await axios.delete(`https://northwind.vercel.app/api/products/${id}`);
-  } catch (e) {
-    console.log("HATAA", e);
-  }
+  } catch (e) {}
 }
 
 async function createTable() {
@@ -54,7 +51,30 @@ async function createTable() {
   });
   container.appendChild(table);
 
+  function handleSort() {
+    const selectedValue = parseInt(sortBtn.value);
+
+    const table = document.querySelector(".products-table table");
+
+    const rows = table.querySelectorAll("tr");
+
+    for (let i = 1; i < rows.length; i++) {
+      const row = rows[i];
+
+      const priceCell = row.querySelector("[data-price]");
+      const price = parseInt(priceCell.dataset.price);
+
+      if (price <= selectedValue) {
+        row.style.display = "table-row";
+      } else {
+        row.style.display = "none";
+      }
+    }
+  }
+
   const sortBtn = document.querySelector("#sortBtn");
+
+  sortBtn.addEventListener("change", handleSort);
 }
 
 createTable();

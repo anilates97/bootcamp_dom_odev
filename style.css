@@ -1,14 +1,9 @@
 table {
   padding: 1rem;
   margin: 1rem;
-  border: 1px solid black;
   text-align: center;
   justify-content: center;
   width: 50%;
-}
-
-table td {
-  border: 1px solid black;
 }
 
 h1 {
